@@ -12,7 +12,8 @@ class Player extends ex.Actor {
   public level = 1;
   public pals = [];
   public gymBadges = [];
-  private _sprite: ex.Sprite;
+
+  public _sprite: ex.Sprite;
 
 
   constructor() {
@@ -29,55 +30,48 @@ class Player extends ex.Actor {
 
     this._sprite = Resources.texturePlayerDownStill.asSprite();
 
-    var upSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkUp, 3, 3, 96, 96);
-    var rightSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkRight, 3, 3, 96, 96);
-    var downSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkDown, 3, 3, 96, 96);
-    var leftSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkLeft, 3, 3, 96, 96);
+    var upSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkUp, 3, 3, 32, 32);
+    var rightSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkRight, 3, 3, 32, 32);
+    var downSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkDown, 3, 3, 32, 32);
+    var leftSpriteSheet = new ex.SpriteSheet(Resources.texturePlayerWalkLeft, 3, 3, 32, 32);
 
     var walkDownAnim = downSpriteSheet.getAnimationForAll(engine, Config.playerWalkFrameSpeed);
-    walkDownAnim.scale.setTo(2, 2);
     walkDownAnim.loop = true;
 
     var walkupAnim = upSpriteSheet.getAnimationForAll(engine, Config.playerWalkFrameSpeed);
-    walkupAnim.scale.setTo(2, 2);
     walkupAnim.loop = true;
 
     var walkLeftAnim = leftSpriteSheet.getAnimationForAll(engine, Config.playerWalkFrameSpeed);
-    walkLeftAnim.scale.setTo(2, 2);
     walkLeftAnim.loop = true;
 
     var walkRightAnim = rightSpriteSheet.getAnimationForAll(engine, Config.playerWalkFrameSpeed);
-    walkRightAnim.scale.setTo(2, 2);
     walkRightAnim.loop = true;
 
     this.addDrawing(this._sprite);
 
   }
-  // public update(game, delta) {
-  //   //updating the base update logic
-  //   super.update(game, delta);
-  //   //custom update logic
-  //   //press or hold the left arrow to move left
-  //   if (game.input.keyboard.isHeld(ex.Input.Keys.Left) || game.input.keyboard.wasPressed(ex.Input.Keys.Left)) {
-  //        this.pos.x -= 20;
-  //   }
-  //   //press or hold the right arrow to move right
-  //   if (game.input.keyboard.isHeld(ex.Input.Keys.Right) || game.input.keyboard.wasPressed(ex.Input.Keys.Right)) {
-  //        this.pos.x += 20;
-  //   }
-  // }
+
+  public update(game, delta) {
+    //updating the base update logic
+    super.update(game, delta);
+    //custom update logic
+    //press or hold the left arrow to move left
+    if (game.input.keyboard.isHeld(ex.Input.Keys.Left) || game.input.keyboard.wasPressed(ex.Input.Keys.Left)) {
+         this.pos.x -= 20;
+    }
+    //press or hold the right arrow to move right
+    if (game.input.keyboard.isHeld(ex.Input.Keys.Right) || game.input.keyboard.wasPressed(ex.Input.Keys.Right)) {
+         this.pos.x += 20;
+    }
+  }
 }
 
 // create an asset loader
 var loader = new ex.Loader();
-var resources = {
-    /* include resources here */
-    //txPlayer: new ex.Texture("assets/tex/player.png")
-};
 
 // queue resources for loading
 for (var r in Resources) {
-    loader.addResource(resources[r]);
+  loader.addResource(Resources[r]);
 }
 
 // uncomment loader after adding resources

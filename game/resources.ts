@@ -4,5 +4,5 @@ var Resources = {
   texturePlayerWalkDown: new ex.Texture("sprites/walking-back.png"),
   texturePlayerWalkLeft: new ex.Texture("sprites/walking-left.png"),
   texturePlayerWalkRight: new ex.Texture("sprites/walking-right.png"),
-  texturePlayerDownStill: new ex.Texture("sprites/player-still.png")
+  texturePlayerDownStill: new ex.Texture("sprites/still-player.png")
 }
