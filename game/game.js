@@ -22,13 +22,6 @@ var Config = {
     playerSpawnY: 252,
     playerWalkFrameSpeed: 6
 };
-/// <reference path="../bower_components/excalibur/dist/excalibur.d.ts" />
-/// <reference path="resources.ts" />
-/// <reference path="config.ts" />
-var game = new ex.Engine({
-    width: 800,
-    height: 600,
-});
 var Player = (function (_super) {
     __extends(Player, _super);
     function Player() {
@@ -74,13 +67,15 @@ var Player = (function (_super) {
     Player.prototype.update = function (game, delta) {
         //updating the base update logic
         _super.prototype.update.call(this, game, delta);
+        // declare keys for movement
         var leftKey = ex.Input.Keys.Left;
         var rightKey = ex.Input.Keys.Right;
         var upKey = ex.Input.Keys.Up;
         var downKey = ex.Input.Keys.Down;
         //custom update logic
-        //press or hold the left arrow to move left
+        // first check if key was released
         if (game.input.keyboard.wasReleased(leftKey)) {
+            // set drawing to still frame looking left
             this.setDrawing("left-still");
         }
         else if (game.input.keyboard.wasReleased(rightKey)) {
@@ -111,6 +106,15 @@ var Player = (function (_super) {
     };
     return Player;
 }(ex.Actor));
+/// <reference path="../bower_components/excalibur/dist/excalibur.d.ts" />
+/// <reference path="resources.ts" />
+/// <reference path="config.ts" />
+/// <reference path="player.ts" />
+var game = new ex.Engine({
+    width: undefined,
+    height: undefined,
+    displayMode: ex.DisplayMode.Container
+});
 // create an asset loader
 var resources = {
     texturePlayerDown: Resources.texturePlayerWalkDown,
