@@ -1,7 +1,7 @@
 var Config = {
-  playerWidth: 48,
-  playerHeight: 48,
-  playerSpawnX: 150,
-  playerSpawnY: 40,
+  playerWidth: 96,
+  playerHeight: 96,
+  playerSpawnX: 302,
+  playerSpawnY: 252,
   playerWalkFrameSpeed: 6
 }
